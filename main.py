@@ -27,7 +27,7 @@ def find_n():
 
 
 for i in range(1, find_n()):
-    # Создание ссылок для всех страниц поиска на сайте реестра (на момент написания 52 страницы с отображением по 100)
+    # Создание ссылок для всех страниц поиска на сайте реестра (с отображением по 100)
     url = baseurl + '/reestr/?PAGEN_1=' + str(i) + '&show_count=100'
     response = urllib.request.urlopen(url)
     print(url)
