@@ -17,7 +17,16 @@ else:
 
 baseurl = 'https://reestr.minsvyaz.ru'
 
-for i in range(1,52):
+# Поиск количества страниц
+
+
+def find_n():
+    req = requests.get('https://reestr.minsvyaz.ru/reestr/?show_count=100', verify=False).text
+    res = BeautifulSoup(req, 'lxml').find('div', class_='page_nav_area').find_all('a', class_='nav_item')
+    return int(res[3].text)+1
+
+
+for i in range(1, find_n()):
     # Создание ссылок для всех страниц поиска на сайте реестра (на момент написания 52 страницы с отображением по 100)
     url = baseurl + '/reestr/?PAGEN_1=' + str(i) + '&show_count=100'
     response = urllib.request.urlopen(url)
